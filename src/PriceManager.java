@@ -53,7 +53,11 @@ public class PriceManager {
         // TODO Call PriceCalculator's method calculateTotalPrices by giving an argument that is a lambda expression
         //  implementing the Function interface. Alter the return statement to return the total prices calculated. Refer
         //  to the README for assistance in calculating the prices correctly.
-        return prices;
+        PriceCalculator newPriceCalculator = new PriceCalculator();
+
+        return newPriceCalculator.calculateTotalPrices(prices, startingPrice -> startingPrice.multiply(salesTax));
+
+        //return prices;
     }
 
     /**
@@ -68,7 +72,14 @@ public class PriceManager {
         // TODO Call PriceCalculator's method calculateTotalPrices by giving an argument that is a lambda expression
         //  implementing the Function interface. Alter the return statement to return the total prices calculated. Refer
         //  to the README for assistance in calculating the prices correctly.
-        return prices;
+        PriceCalculator newPriceCalculator = new PriceCalculator();
+
+        return newPriceCalculator.calculateTotalPrices(prices, startingPrice -> {
+            BigDecimal newPrice = startingPrice.add(setupFee);
+            newPrice = newPrice.multiply(salesTax);
+            return newPrice;
+        });
+        //return prices;
     }
 
     /**
@@ -84,6 +95,15 @@ public class PriceManager {
         // TODO Call PriceCalculator's method calculateTotalPrices by giving an argument that is a lambda expression
         //  implementing the Function interface. Alter the return statement to return the total prices calculated. Refer
         //  to the README for assistance in calculating the prices correctly.
-        return prices;
+        PriceCalculator newPriceCalculator = new PriceCalculator();
+
+        return newPriceCalculator.calculateTotalPrices(prices, startingPrice -> {
+            BigDecimal newPrice = startingPrice.add(setupFee);
+            newPrice = newPrice.add(salesFee);
+            newPrice = newPrice.add(countyFee);
+            return newPrice;
+        });
+
+        //return prices;
     }
 }
